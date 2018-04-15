@@ -1,0 +1,3 @@
+node 'puppet' {
+	include nginx
+}
