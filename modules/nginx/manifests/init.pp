@@ -18,6 +18,7 @@ class nginx {
 		ensure => running,
 		require => Package['nginx'],
 		enable => true,
+		hasstatus => true,
 	}		
 
 	file { '/etc/nginx/sites-enabled/default':
