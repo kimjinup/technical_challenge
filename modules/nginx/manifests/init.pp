@@ -1,17 +1,7 @@
-# Manage nginx webserver
-
+# Instead of Nginx module, the implementation is based on standard modules such as package, file, and service. 
 class nginx {
-	package { 'apache2':
-		ensure => absent,
-	}
-
-	package { 'httpd':
-		ensure => absent,
-	}
-
 	package { 'nginx':
 		ensure => installed,
-		require => Package['apache2'],
 	}
 	
 	service { 'nginx':
@@ -21,7 +11,19 @@ class nginx {
 	}		
 
 	file { '/etc/nginx/sites-enabled/default':
-		source => 'puppet:///modules/nginx/cat-pictures.conf',
+		source => 'puppet:///modules/nginx/site.conf',
 		notify => Service['nginx'],
+		require => Package['nginx'],
 	}
+
+	file { '/var/www/site/':
+		ensure => 'directory',
+	}
+
+	vcsrepo { '/var/www/site':
+		ensure => 'present',
+		provider => 'git',
+		source => 'https://github.com/puppetlabs/exercise-webpage',
+	}
+
 }

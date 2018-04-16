@@ -1,3 +1,3 @@
-node 'puppet' {
+node 'default' {
 	include nginx
 }

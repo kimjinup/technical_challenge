@@ -1,0 +1,4 @@
+# Requirements: 
+#	- puppet package should be installed before executing the 'run.sh'
+#	- vcsrepo module needs to be downloaded by the puppet install, 
+#	  so the host executing this script should have the Internet connection
